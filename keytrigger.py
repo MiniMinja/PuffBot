@@ -1,5 +1,6 @@
-from pynput.keyboard import Key, Listener
+from pynput.keyboard import Key, Listener, KeyCode
 import threading
+import handler
 
 def on_press(key):
     print('{0} pressed'.format(
@@ -10,10 +11,13 @@ def on_release(key):
         key))
     if key == Key.esc:
         return False
+    elif key == KeyCode.from_char('s'):
+        handler.bot_flag = True
 
 def run():
     with Listener(on_press=on_press, on_release=on_release) as listener:
         listener.join()
+        handler.stop_flag = True
 
 class KeyTrigger:
 
