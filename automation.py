@@ -1,9 +1,9 @@
-import pyautogui
 import threading
 import time
 import handler
 
 bot_active = False
+jp = handler.jp
 
 class Automation:
     def __init__(self):
@@ -15,11 +15,9 @@ class Automation:
         print('Starting Bot')
         self.thread.start()
 
-    def just_jump(self):
-        pyautogui.keyDown('up')
-        pyautogui.keyUp('up')
-
     def run(self):
+        global jp
         while not handler.stop_flag:
-            self.just_jump()
-            time.sleep(1)
+            jp.tick()
+            print(jp)
+            time.sleep(1.0/30.0)

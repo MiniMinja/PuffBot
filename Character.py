@@ -1,11 +1,10 @@
+from Vector import Vector
 class Character:
     def __init__(self, x, y):
-        self.x = x
-        self.y = y
+        self.loc = Vector(x, y)
 
     def move(dx, dy):
-        self.x += dx
-        self.y += dy
+        self.loc += Vector(dx ,dy)
 
     def __repr__(self):
-        return 'x: {} y: {}'.format(x, y)
+        return self.loc.__repr__()
