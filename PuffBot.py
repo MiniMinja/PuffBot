@@ -6,6 +6,7 @@ import time
 class PuffBot:
 
     def __init__(self):
+        self.jp = handler.jp
         self.keytrig = keytrigger.KeyTrigger()
         self.internalThread = threading.Thread(target=self.run)
 
@@ -16,7 +17,7 @@ class PuffBot:
     def run(self):
         while not handler.stop_flag:
             if handler.bot_flag:
-                //TODO
+                self.jp.start()
             else:
                 time.sleep(1)
         self.keytrig.thread.join()
