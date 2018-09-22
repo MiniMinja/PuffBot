@@ -3,12 +3,10 @@ import threading
 import handler
 
 def on_press(key):
-    print('{0} pressed'.format(
-        key))
+    pass
+    #print('{0} pressed'.format(key))
 
 def on_release(key):
-    print('{0} release'.format(
-        key))
     if key == Key.esc:
         return False
     elif key == KeyCode.from_char('s'):

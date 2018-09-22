@@ -21,5 +21,11 @@ class Vector:
         else:
             raise ValueError('You tried to multiply this vector with a non-number')
 
+    def setX(self, x):
+        self.x = x
+
+    def setY(self, y):
+        self.y = y
+        
     def __repr__(self):
         return 'x: {} y: {}'.format(x, y)

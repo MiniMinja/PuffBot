@@ -1,11 +1,12 @@
 from Vector import Vector
+import imagereader
 class Character:
     def __init__(self, x, y):
         self.loc = Vector(x, y)
         self.grounded = False;
-
-    def move(self, dx, dy):
-        self.loc += Vector(dx ,dy)
+        self.imagereader = imagereader.ImageReader()
+        self.movingLeft = False
+        self.movingRight = False
 
     def x(self):
         return self.loc.x;
@@ -14,8 +15,11 @@ class Character:
         return self.loc.y
 
     def tick(self):
-        if self.x() > 10.286 and self.x() < 10.286 + 10.786 and self.y() < 7.7:
-                self.grounded = True
+        self.imagereader.tick()
+
+    def setLoc(self, x, y):
+        self.loc.setX(x)
+        self.loc.setY(y)
 
     def __repr__(self):
         return self.loc.__repr__()

@@ -11,21 +11,40 @@ class JigglyPuff(Character):
         self.thread = threading.Thread(target=self.run)
         self.isAlive = False
 
-    def short_jump(self):
-        pyautogui.keyDown('up')
-        pyautogui.keyUp('up')
-        Character.move
-
     def tick(self):
         Character.tick(self)
 
-        if self.grounded:
-            self.short_jump()
+    def stop_moving(self):
+        self.stop_moving_down()
+        self.stop_moving_left()
+        self.stop_moving_right()
+
+    def short_jump(self):
+        pyautogui.keyDown('up')
+        pyautogui.keyUp('up')
+
+    def move_left(self):
+        pyautogui.keyDown('left')
+
+    def move_right(self):
+        pyautogui.keyDown('right')
+
+    def stop_moving_left(self):
+        pyautogui.keyUp('left')
+
+    def stop_moving_right(self):
+        pyautogui.keyUp('right')
+
+    def move_down(self):
+        pyautogui.keyDown('down')
+
+    def stop_moving_down(self):
+        pyautogui.keyUp('down')
 
     def run(self):
         start_time = time.time()
         while not handler.stop_flag:
-            if time.time() - start_time >= 1.0 / 30.0:
+            if time.time() - start_time >= .001:
                 self.tick()
             else:
                 time.sleep(.001)
@@ -34,3 +53,6 @@ class JigglyPuff(Character):
         if not self.isAlive:
             self.thread.start()
             self.isAlive = True
+
+    def setLoc(self, x, y):
+        Character.setLoc(x, y)
